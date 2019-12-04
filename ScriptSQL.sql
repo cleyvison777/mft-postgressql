@@ -1,0 +1,1 @@
+ALTER TABLE categoria ALTER COLUMN tipo TYPE BIGINT;
