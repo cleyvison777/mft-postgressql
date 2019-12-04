@@ -1,0 +1,51 @@
+create table r47_medicao_subparcela(
+r47_cdsubparcela bigserial not null primary key,
+r47_cdempresa bigserial,
+r47_cdarea bigserial,
+r47_cdparcela bigserial,
+r47_cdmedicao bigint,
+r47_cdclassefloresta bigserial,
+r47_cdclassetamanho bigserial,
+r47_nmresponsavel varchar(100),
+r47_nmidentificador varchar(100));
+
+
+
+ALTER TABLE r47_medicao_subparcela
+ADD CONSTRAINT FK_r47_cdempresa
+FOREIGN KEY (r47_cdempresa)
+REFERENCES d13_empresa(d13_cdempresa)
+ON DELETE CASCADE; 
+====================================
+ALTER TABLE r47_medicao_subparcela
+ADD CONSTRAINT FK_r47_cdarea
+FOREIGN KEY (r47_cdarea)
+REFERENCES d20_area(d20_cdarea)
+ON DELETE CASCADE; 
+===========================
+
+ALTER TABLE r47_medicao_subparcela
+ADD CONSTRAINT FK_r47_cdparcela
+FOREIGN KEY (r47_cdparcela)
+REFERENCES d21_parcela(d21_cdparcela)
+ON DELETE CASCADE; 
+================================
+
+ALTER TABLE r47_medicao_subparcela
+ADD CONSTRAINT FK_r47_cdmedicao
+FOREIGN KEY (r47_cdmedicao)
+REFERENCES d18_medicao(d18_cdmedicao)
+ON DELETE CASCADE; 
+=========================
+
+ALTER TABLE r47_medicao_subparcela
+ADD CONSTRAINT FK_r47_cdmedicao
+FOREIGN KEY (r47_cdmedicao)
+REFERENCES d18_medicao(d18_cdmedicao)
+ON DELETE CASCADE; 
+
+
+=========================
+
+
+--==================================fim r47_medicao_subparcela

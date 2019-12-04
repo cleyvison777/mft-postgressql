@@ -1,0 +1,12 @@
+create table d10_classe_tamanho_individuo(
+d10_cdclassetamanho bigserial not null primary key,
+d10_nmclassetamanho varchar(50));
+
+--==================================== 
+ALTER TABLE r47_medicao_subparcela
+ADD CONSTRAINT FK_d10_cdclassetamanho
+FOREIGN KEY (d10_cdclassetamanho)
+REFERENCES r33_area_classe_tamanho(r33_cdclassetamanho)
+ON DELETE CASCADE; 
+
+---================================fim d10_classe_tamanho_individuo

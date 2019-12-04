@@ -1,0 +1,31 @@
+create table r33_area_classe_tamanho(
+r33_cdclassetamanho bigserial not null primary key,
+r33_cdempresa bigserial,
+r33_cdarea bigserial,
+r33_cdequacaovolumepadrao bigserial,
+r33_cdformatosubparcela bigserial,
+r33_dapminimocomfustemm int,
+r33_dapmaximocomfustemm int,
+r33_dapminimosemfustemm int,
+r33_dapmaximosemfustemm int,
+r33_alturaminimam numeric(10, 2),
+r33_alturamaximam numeric(10, 2),
+r33_comprimentoparcelam numeric(10, 2),
+r33_larguraparcelam numeric(10, 2),
+r33_dimensao1subparcelam numeric(10, 2),
+r33_dimensao2subparcelam numeric(10, 2),
+r33_dimensao3subparcelam numeric(10, 2),
+r33_padraocrescanualminimomm int,
+r33_padraocrescanualmaximomm int,
+r33_dapmaximoingmedicao2mm int,
+r33_nrsubparcelasporparcela int);
+
+--====================  FOREIGN key ?
+ALTER TABLE r33_area_classe_tamanho
+ADD CONSTRAINT FK_r33_area_classe_tamanho
+FOREIGN KEY (r33_cdclassetamanho)
+REFERENCES d10_classe_tamanho_individuo(d10_cdclassetamanho)
+ON DELETE CASCADE; 
+
+
+--=================================fim r33_area_classe_tamanho

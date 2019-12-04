@@ -1,0 +1,15 @@
+create table r38_especie_classe_tamanho(
+r38_cdclassetamanho bigserial not null primary key,
+r38_cdempresa bigserial,
+r38_cdlistaesp bigserial,
+r38_cdespecie bigserial,
+r38_cdequacaovolume bigserial,
+r38_crescimentoanualminimomm integer,
+r38_crescimentoanualmaximomm integer)
+=====================================
+
+ALTER TABLE r38_especie_classe_tamanho
+ADD CONSTRAINT FK_r38_especie_classe_tamanho_d03_especie
+FOREIGN KEY (r38_cdespecie)
+REFERENCES d03_especie(d03_cdespecie)
+ON DELETE CASCADE; 
