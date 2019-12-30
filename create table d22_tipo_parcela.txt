@@ -1,0 +1,14 @@
+--Criar tabela
+CREATE TABLE d22_tipo_parcela(
+d22_cdtipoparcela bigserial NOT NULL PRIMARY KEY,
+d22_cdempresa	bigserial, 
+d22_nmtipoparcela	VARCHAR(100),	
+d22_lgestudocrescimento	INT);
+
+----CHAVE d22_tipo_parcela
+
+ALTER TABLE d22_tipo_parcela
+ADD CONSTRAINT FK_d22_cdempresa
+FOREIGN KEY (d22_cdempresa)
+REFERENCES d13_empresa(d13_cdempresa)
+ON DELETE CASCADE;	

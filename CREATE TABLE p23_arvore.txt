@@ -1,0 +1,32 @@
+CREATE TABLE p23_arvore(
+   p23_cdarvore bigserial not null primary key,
+	p23_cdempresa bigserial,
+	p23_cdarea bigserial,
+	p23_cdmedicao bigserial,
+	p23_cdparcela bigserial,
+	p23_cdsubparcela bigserial,
+	p23_cdespecie bigserial,
+	p23_cdclassetamanho bigserial,
+	p23_cdcif bigserial,
+	p23_cddano bigserial,
+	p23_cdpodridao bigserial, 
+	p23_cdiluminacao bigserial,
+	p23_cdforma bigserial,
+	p23_cdcipo bigserial,
+	p23_cdtratamento bigserial,  
+	p23_nrindividuo integer,
+	p23_nrfuste integer,
+	diametromm integer,
+	p23_coordx integer,
+	p23_coordy integer,
+	p23_lgmudancapdm integer,
+	p23_volumetmp numeric(8, 2),
+	p23_areabasaltmp numeric(8, 2));
+	
+ALTER TABLE p23_arvore
+ADD CONSTRAINT FK_p23_cdempresa_d13_cdempresa
+FOREIGN KEY (p23_cdempresa)
+REFERENCES d13_empresa(d13_cdempresa)
+ON DELETE CASCADE;
+	
+
