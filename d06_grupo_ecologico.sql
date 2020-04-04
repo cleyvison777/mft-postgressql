@@ -6,3 +6,9 @@ d06_nmgrupoecologico varchar(100)
 
 insert into d06_grupo_ecologico(d06_cdempresa, d06_nmgrupoecologico)
 values(1, 'teste2');
+
+
+select * from d02_genero
+
+
+
