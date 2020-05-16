@@ -71,7 +71,7 @@ d20_lgpalmeiracontada Integer);
 
 ALTER TABLE d20_area
 ADD CONSTRAINT FK_d20_cdempresa
-FOREIGN KEY (d20_cdarea)
+FOREIGN KEY (d20_cdempresa)
 REFERENCES d13_empresa(d13_cdempresa)
 ON DELETE CASCADE;
 
@@ -951,7 +951,17 @@ create table d07_uso_especie(
 d07_cduso bigserial not null primary key,
 d07_cdempresa bigserial,
 d07_nmuso varchar(100),
-d07_lgmadeira integer);
+d07_lgmadeira varchar(15));
+
+insert into d07_uso_especie (d07_cdempresa, d07_nmuso, d07_lgmadeira) values  (1, 'MADEIRA PARA SERRARIA', 'Comercial');
+insert into d07_uso_especie (d07_cdempresa, d07_nmuso, d07_lgmadeira) values  (1, 'MADEIRA PARA LÂMINA', 'Comercial');
+insert into d07_uso_especie (d07_cdempresa, d07_nmuso, d07_lgmadeira) values  (1, 'MADEIRA PARA ENERGIA', 'Comercial');
+insert into d07_uso_especie (d07_cdempresa, d07_nmuso, d07_lgmadeira) values  (1, 'MADEIRA PARA POSTES', 'Comercial');
+insert into d07_uso_especie (d07_cdempresa, d07_nmuso, d07_lgmadeira) values  (1, 'MADEIRA PARA MOIRÕES E ESTACAS' ,'Comercial');
+insert into d07_uso_especie (d07_cdempresa, d07_nmuso, d07_lgmadeira) values  (1, 'MADEIRA PARA OUTROS USOS INSTRUMENTOS MUSICAIS ARTESANATO E OUTROS', 'Comercial');
+insert into d07_uso_especie (d07_cdempresa, d07_nmuso, d07_lgmadeira) values  (1, 'NÃO MADEIREIRO MEDICINAL ALIMENTÍCIO E OUTROS', 'Comercial');
+insert into d07_uso_especie (d07_cdempresa, d07_nmuso, d07_lgmadeira) values  (1, 'MADEIRA SEM USO ATUAL', 'Não Comercial');
+insert into d07_uso_especie (d07_cdempresa, d07_nmuso, d07_lgmadeira) values  (1, 'MADEIRA POTENCIALMENTE COMERCIAL', 'Comercial');
 
 
 ===============================
