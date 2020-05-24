@@ -64,8 +64,8 @@ d20_nrtelefoneresponsavel VARCHAR(100),
 d20_emailresponsavel VARCHAR(100),
 d20_txhistoricoarea VARCHAR(4000),
 d20_txobservacaoarea VARCHAR(4000),
-d20_lgmudacontada Integer,
-d20_lgpalmeiracontada Integer);
+d20_lgmudacontada boolean,
+d20_lgpalmeiracontada boolean);
 
 
 
