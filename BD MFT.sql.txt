@@ -1,20 +1,29 @@
+DROP TABLE  IF EXISTS  mftdb;
+CREATE DATABASE "mftdb"
+  WITH OWNER = postgres
+       ENCODING = 'UTF8'
+       TABLESPACE = pg_default
+       LC_COLLATE = 'Portuguese_Brazil.1252'
+       LC_CTYPE = 'Portuguese_Brazil.1252'
+       CONNECTION LIMIT = -1;
+      
+COMMENT ON DATABASE "mftdb"
+  IS 'Banco de dados MFT';
+
 CREATE TABLE d13_empresa(
 d13_cdempresa BIGSERIAL NOT NULL PRIMARY KEY,
-
 d13_nmempresa VARCHAR(100),
-
 d13_nmabreviado VARCHAR(20),
-
 d13_nrtelefone varchar(100),
-
 d13_enderecocompleto VARCHAR(100),
-
 d13_txpessoacontato VARCHAR(100),
-
 d13_cnpjempresa VARCHAR(50),
-
 d13_diretorioarquivos VARCHAR(255));
-==============================
+
+insert into d13_empresa (d13_nmempresa, d13_nmabreviado) values ('EMPRESA MODELO', 'MODELO');
+insert into d13_empresa (d13_nmempresa, d13_nmabreviado, d13_txpessoacontato) values ('EMPRESA BRASILEIRA DE PESQUISA AGROPECUÁRIA', 'EMBRAPA', 'NATALINO SILVA');
+insert into d13_empresa (d13_nmempresa, d13_nmabreviado) values ('EMPRESA COM DADOS DE EXEMPLO', 'EXEMPLO');
+
 
 create table d05_lista_especie( 
 d05_cdlistaesp bigserial not null primary key,
@@ -22,12 +31,7 @@ d05_cdempresa bigserial,
 d05_nmlistaesp varchar(100)
 );
 
-
-
-insert into d05_lista_especie(d05_cdempresa, d05_nmlistaesp) values (1, 'teste')
-select * from d05_lista_especie
-
-===============================
+insert into d05_lista_especie(d05_cdempresa, d05_nmlistaesp) values (1, 'LISTA REVISADA JULHO');
 
 CREATE  TABLE d20_area(
 d20_cdarea BIGSERIAL NOT NULL PRIMARY KEY,
@@ -80,7 +84,6 @@ ADD CONSTRAINT FK_d20_cdlistaesp
 FOREIGN KEY (d20_cdlistaesp)
 REFERENCES d05_lista_especie(d05_cdlistaesp)
 ON DELETE CASCADE;
-============================
 
 CREATE TABLE d01_familia (
 d01_cdfamilia BIGSERIAL NOT NULL PRIMARY KEY,
@@ -204,8 +207,6 @@ d01_nmfamilia VARCHAR(50));
 ('Ochanaceae'),
 ('Quinaceae'),
 ('Curcubitaceae');
-============================
-
 
 create table d06_grupo_ecologico(
 d06_cdgrupoecologico bigserial not null primary key,
@@ -213,9 +214,11 @@ d06_cdempresa bigserial,
 d06_nmgrupoecologico varchar(100)
 );
 
-insert into d06_grupo_ecologico(d06_cdempresa, d06_nmgrupoecologico)
-values(1, 'teste2');
-==============================
+insert into d06_grupo_ecologico(d06_cdempresa, d06_nmgrupoecologico) values(1, 'PIONEIRAS');
+insert into d06_grupo_ecologico(d06_cdempresa, d06_nmgrupoecologico) values(1, 'DEMANDANTES DE LUZ');
+insert into d06_grupo_ecologico(d06_cdempresa, d06_nmgrupoecologico) values(1, 'TOLERANTES À SOMBRA');
+
+
 create table d02_genero(
 d02_cdgenero bigserial not null primary key,
 d02_nmgenero varchar(50),
@@ -945,8 +948,6 @@ insert into d02_genero (d02_nmgenero, d02_cdfamilia) values ('Alouea',54);
 insert into d02_genero (d02_nmgenero, d02_cdfamilia) values ('Chaumochytum',79);
 insert into d02_genero (d02_nmgenero, d02_cdfamilia) values ('Metrodoria',94);
 
-================================
-
 create table d07_uso_especie(
 d07_cduso bigserial not null primary key,
 d07_cdempresa bigserial,
@@ -963,8 +964,6 @@ insert into d07_uso_especie (d07_cdempresa, d07_nmuso, d07_lgmadeira) values  (1
 insert into d07_uso_especie (d07_cdempresa, d07_nmuso, d07_lgmadeira) values  (1, 'MADEIRA SEM USO ATUAL', 'Não Comercial');
 insert into d07_uso_especie (d07_cdempresa, d07_nmuso, d07_lgmadeira) values  (1, 'MADEIRA POTENCIALMENTE COMERCIAL', 'Comercial');
 
-
-===============================
 create table d03_especie(
 d03_cdespecie   bigserial not null primary key,
 d03_cdempresa	bigserial,
@@ -985,16 +984,11 @@ FOREIGN KEY (d03_cdfamilia)
 REFERENCES d01_familia(d01_cdfamilia)
 ON DELETE CASCADE;
 
-
-
 ALTER TABLE d03_especie
 ADD CONSTRAINT FK_d03_especie_d02_genero
 FOREIGN KEY (d03_cdgenero)
 REFERENCES d02_genero(d02_cdgenero)
 ON DELETE CASCADE;
-
-
-
 
 ALTER TABLE d03_especie
 ADD CONSTRAINT FK_d03_especie_d06_grupo_ecologico1
@@ -1002,14 +996,11 @@ FOREIGN KEY (d03_cdgrupoecologico)
 REFERENCES d06_grupo_ecologico(d06_cdgrupoecologico)
 ON DELETE CASCADE;
 
-
 ALTER TABLE d03_especie
 ADD CONSTRAINT FK_r37_especie_uso_d03_especie
 FOREIGN KEY (d03_cdgrupoecologico)
 REFERENCES d07_uso_especie(d07_cduso)
 ON DELETE CASCADE;
-===================
-
 
 create table r37_especie_uso(
 r37_cduso bigserial not null primary key,
@@ -1017,18 +1008,13 @@ r37_cdlistaesp bigserial,
 r37_cdempresa bigserial,
 r37_cdespecie bigserial);
 
+
+
 ALTER TABLE r37_especie_uso
 ADD CONSTRAINT FK_r37_especie_uso_d03_especie
 FOREIGN KEY (r37_cdespecie)
 REFERENCES d03_especie(d03_cdespecie)
 ON DELETE CASCADE; 
-
-==========================
-
-
-
-
-======================================
 
 create table r38_especie_classe_tamanho(
 r38_cdclassetamanho bigserial not null primary key,
@@ -1039,7 +1025,6 @@ r38_cdequacaovolume bigserial,
 r38_crescimentoanualminimomm Integer,
 r38_crescimentoanualmaximomm Integer);
 
-=========================
 
 create table d08_equacao (
 d08_cdequacao bigserial not null primary key,
@@ -1049,13 +1034,12 @@ d08_equacao varchar(3000),
 d08_txobservacaoequacao varchar(100),
 d08_imequacao oid
 );
-===========================
 
 create table d10_classe_tamanho_individuo ( 
 d10_cdclassetamanho bigserial not null primary key,
 d10_nmclassetamanho varchar(50)
 );
-=============================
+
 create table d18_medicao(
 d18_cdmedicao bigserial not null primary key, 
 d18_cdempresa bigserial,
@@ -1075,7 +1059,6 @@ ADD CONSTRAINT FK_d18_cdarea
 FOREIGN KEY (d18_cdarea)
 REFERENCES d20_area(d20_cdarea)
 ON DELETE CASCADE; 
---==================fim d18_medicao
 
 
 create table r33_area_classe_tamanho(
@@ -1100,7 +1083,7 @@ r33_padraocrescanualmaximomm int,
 r33_dapmaximoingmedicao2mm int,
 r33_nrsubparcelasporparcela int);
 
---====================  FOREIGN key ?
+
 ALTER TABLE r33_area_classe_tamanho
 ADD CONSTRAINT FK_r33_area_classe_tamanho
 FOREIGN KEY (r33_cdclassetamanho)
@@ -1108,8 +1091,6 @@ REFERENCES d10_classe_tamanho_individuo(d10_cdclassetamanho)
 ON DELETE CASCADE; 
 
 
---=================================fim r33_area_classe_tamanho
-------Criar tabela
 CREATE TABLE d22_tipo_parcela(
 d22_cdtipoparcela bigserial NOT NULL PRIMARY KEY,
 d22_cdempresa	bigserial, 
@@ -1121,7 +1102,8 @@ ADD CONSTRAINT FK_d22_cdempresa
 FOREIGN KEY (d22_cdempresa)
 REFERENCES d13_empresa(d13_cdempresa)
 ON DELETE CASCADE;
-============================
+
+
 CREATE TABLE d21_parcela(
 d21_cdparcela	bigserial NOT NULL PRIMARY KEY,
 d21_cdempresa	bigserial,
@@ -1154,7 +1136,7 @@ d21_longitudeponto4minuto	Integer,
 d21_longitudeponto4orientacao	VARCHAR(10),	
 d21_lgtestemunha	Integer);	
 
-----CHAVE d21_parcela	
+
 	
 ALTER TABLE d21_parcela
 ADD CONSTRAINT FK_d21_cdempresa
@@ -1176,7 +1158,7 @@ REFERENCES d20_area(d20_cdarea)
 ON DELETE CASCADE;
 
 
---=========================================
+
 create table r47_medicao_subparcela(
 r47_cdsubparcela bigserial not null primary key,
 r47_cdempresa bigserial,
@@ -1215,12 +1197,6 @@ REFERENCES d18_medicao(d18_cdmedicao)
 ON DELETE CASCADE; 
 
 
-=========================
-
-
-
-
---Criar tabela
 CREATE TABLE d29_subparcela(
 d29_cdsubparcela  bigserial NOT NULL PRIMARY key,
 d29_cdempresa	bigserial,	
@@ -1246,9 +1222,6 @@ ADD CONSTRAINT FK_d29_cdarea
 FOREIGN KEY (d29_cdarea)
 REFERENCES d20_area(d20_cdarea)
 ON DELETE CASCADE;
-
-=======================
-
 
 
 CREATE TABLE p23_arvore(
@@ -1282,21 +1255,27 @@ FOREIGN KEY (p23_cdempresa)
 REFERENCES d13_empresa(d13_cdempresa)
 ON DELETE CASCADE;
 	
-
-===========================
-
 create table d09_categoria_protecao(
 d09_cdcategoriaprotecao bigserial not null primary key,
 d09_cdempresa bigserial,
 d09_nmcategoriaprotecao varchar(100));
 
-
+insert into d09_categoria_protecao (d09_cdempresa, d09_nmcategoriaprotecao) values (1, 'NÃO CATEGORIZADA');
+insert into d09_categoria_protecao (d09_cdempresa, d09_nmcategoriaprotecao) values (1, 'PROTEGIDA');
+insert into d09_categoria_protecao (d09_cdempresa, d09_nmcategoriaprotecao) values (1, 'AMEAÇADA DE EXTINÇÃO');
+insert into d09_categoria_protecao (d09_cdempresa, d09_nmcategoriaprotecao) values (1, 'EM EXTINÇÃO');
+insert into d09_categoria_protecao (d09_cdempresa, d09_nmcategoriaprotecao) values (1, 'VULNERÁVEL');
 
 ALTER TABLE d03_especie
 ADD CONSTRAINT FK_d03_especie_d09_categoria_protecao
 FOREIGN KEY (d03_cdcategoriaprotecao)
 REFERENCES d09_categoria_protecao(d09_cdcategoriaprotecao)
 ON DELETE CASCADE; 
-========================
 		
+
+ALTER TABLE d09_categoria_protecao
+ADD CONSTRAINT FK_d13_cdempresa_d09_categoria_protecao
+FOREIGN KEY (d09_cdempresa)
+REFERENCES d13_empresa(d13_cdempresa)
+ON DELETE CASCADE; 
 
