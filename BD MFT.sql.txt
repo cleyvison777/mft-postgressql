@@ -1103,6 +1103,14 @@ FOREIGN KEY (d22_cdempresa)
 REFERENCES d13_empresa(d13_cdempresa)
 ON DELETE CASCADE;
 
+insert into d22_tipo_parcela(d22_cdempresa, d22_nmtipoparcela, d22_lgestudocrescimento) values (1, 'PERMANENTE', 'true');
+insert into d22_tipo_parcela(d22_cdempresa, d22_nmtipoparcela, d22_lgestudocrescimento) values (1, 'REPETIÇÃO PARCIAL', 'false');
+insert into d22_tipo_parcela(d22_cdempresa, d22_nmtipoparcela, d22_lgestudocrescimento) values (1, 'TEMPORÁRIA', 'true');
+
+
+
+
+
 
 CREATE TABLE d21_parcela(
 d21_cdparcela	bigserial NOT NULL PRIMARY KEY,
