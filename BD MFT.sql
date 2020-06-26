@@ -1040,6 +1040,17 @@ d10_cdclassetamanho bigserial not null primary key,
 d10_nmclassetamanho varchar(50)
 );
 
+insert into d10_classe_tamanho_individuo (d10_nmclassetamanho) values ('ÁRVORE');
+insert into d10_classe_tamanho_individuo (d10_nmclassetamanho) values ('ARVORETA');
+insert into d10_classe_tamanho_individuo (d10_nmclassetamanho) values ('VARA');
+insert into d10_classe_tamanho_individuo (d10_nmclassetamanho) values ('MUDA NUMERADA');
+insert into d10_classe_tamanho_individuo (d10_nmclassetamanho) values ('MUDA CONTADA');
+insert into d10_classe_tamanho_individuo (d10_nmclassetamanho) values ('PALMEIRA NUMERADA');
+insert into d10_classe_tamanho_individuo (d10_nmclassetamanho) values ('PALMEIRA CONTADA');
+
+
+
+
 create table d18_medicao(
 d18_cdmedicao bigserial not null primary key, 
 d18_cdempresa bigserial,
