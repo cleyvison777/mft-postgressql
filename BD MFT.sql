@@ -1298,3 +1298,39 @@ FOREIGN KEY (d09_cdempresa)
 REFERENCES d13_empresa(d13_cdempresa)
 ON DELETE CASCADE; 
 
+create table d36_tratamento_silvicultural(
+d36_cdtratamento bigserial not null primary key,
+d36_cdempresa bigserial,
+d36_nmtratamento varchar(100));
+
+insert into d36_tratamento_silvicultural (d36_cdempresa, d36_nmtratamento) values (1, 'ÁRVORE ANELADA');
+insert into d36_tratamento_silvicultural (d36_cdempresa, d36_nmtratamento) values (1, 'ÁRVORE ANELADA E TRATADA COM APLICAÇÃO DE ARBORICIDA');
+insert into d36_tratamento_silvicultural (d36_cdempresa, d36_nmtratamento) values (1, 'ÁRVORE BENEFICIADA POR TRATAMENTO SILVICULTURAL');
+insert into d36_tratamento_silvicultural (d36_cdempresa, d36_nmtratamento) values (1, 'ÁRVORE NÃO RESERVADA NEM TRATADA');
+insert into d36_tratamento_silvicultural (d36_cdempresa, d36_nmtratamento) values (1, 'ÁRVORE RESERVADA PARA FUTURA COLHEITA');
+
+ALTER TABLE d36_tratamento_silvicultural
+ADD CONSTRAINT FK_d36_tratamento_silvicultural_d13_cdempresa
+FOREIGN KEY (d36_cdempresa)
+REFERENCES d13_empresa(d13_cdempresa)
+ON DELETE CASCADE; 
+
+
+create table r35_ts_atual_ts_anterior(
+r35_cdtratamentoanterior bigserial not null primary key,
+r35_cdempresa bigserial,
+r35_cdtratamentoatual bigserial);
+
+ALTER TABLE r35_ts_atual_ts_anterior
+ADD CONSTRAINT FK_r35_ts_atual_ts_anterior_d13_cdempresa
+FOREIGN KEY (r35_cdtratamentoatual)
+REFERENCES d13_empresa(d13_cdempresa)
+ON DELETE CASCADE; 
+
+ALTER TABLE r35_ts_atual_ts_anterior
+ADD constraint FK_r35_ts_atual_ts_anterior_d36_tratamento_silvicultural
+FOREIGN KEY (r35_cdempresa)
+REFERENCES d36_tratamento_silvicultural(d36_cdtratamento)
+ON DELETE CASCADE; 
+
+
