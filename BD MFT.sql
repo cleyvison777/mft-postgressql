@@ -1333,4 +1333,5 @@ FOREIGN KEY (r35_cdempresa)
 REFERENCES d36_tratamento_silvicultural(d36_cdtratamento)
 ON DELETE CASCADE; 
 
-
+insert into r35_ts_atual_ts_anterior (r35_cdempresa, r35_cdtratamentoatual) values (1, 1);
+select * from r35_ts_atual_ts_anterior
