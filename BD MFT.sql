@@ -1323,15 +1323,22 @@ r35_cdtratamentoatual bigserial);
 
 ALTER TABLE r35_ts_atual_ts_anterior
 ADD CONSTRAINT FK_r35_ts_atual_ts_anterior_d13_cdempresa
-FOREIGN KEY (r35_cdtratamentoatual)
+FOREIGN KEY (r35_cdempresa)
 REFERENCES d13_empresa(d13_cdempresa)
 ON DELETE CASCADE; 
 
 ALTER TABLE r35_ts_atual_ts_anterior
 ADD constraint FK_r35_ts_atual_ts_anterior_d36_tratamento_silvicultural
-FOREIGN KEY (r35_cdempresa)
+FOREIGN KEY (r35_cdtratamentoatual)
+REFERENCES d36_tratamento_silvicultural(d36_cdtratamento)
+ON DELETE CASCADE; 
+
+ALTER TABLE r35_ts_atual_ts_anterior
+ADD constraint FK_r35_ts_atual_ts_anterior_d36_tratamento_silvicultural1
+FOREIGN KEY (r35_cdtratamentoanterior)
 REFERENCES d36_tratamento_silvicultural(d36_cdtratamento)
 ON DELETE CASCADE; 
 
 insert into r35_ts_atual_ts_anterior (r35_cdempresa, r35_cdtratamentoatual) values (1, 1);
-select * from r35_ts_atual_ts_anterior
+select * from d36_tratamento_silvicultural
+
