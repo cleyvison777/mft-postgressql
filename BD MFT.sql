@@ -1347,12 +1347,12 @@ insert into r35_ts_atual_ts_anterior (r35_cdtratamentoanterior ,r35_cdempresa, r
 
 select * from r35_ts_atual_ts_anterior
 
-select d.d36_cdtratamento, d.d36_nmtratamento,  r.r35_cdtratamentoanterior, r.r35_cdtratamentoatual from d36_tratamento_silvicultural d
-join r35_ts_atual_ts_anterior r on(d.d36_cdtratamento = r.r35_cdtratamentoanterior) where d.d36_cdtratamento = 1
+select r.r35_cdtratamentoanteriorpk, d.d36_cdtratamento, d.d36_nmtratamento,  r.r35_cdtratamentoanterior, r.r35_cdtratamentoatual from d36_tratamento_silvicultural d
+join r35_ts_atual_ts_anterior r on(d.d36_cdtratamento = r.r35_cdtratamentoanterior) where r.r35_cdtratamentoanteriorpk = 52
 
 
 select d.d36_cdtratamento, d.d36_nmtratamento, r.r35_cdtratamentoanteriorpk, r.r35_cdtratamentoanterior, r.r35_cdtratamentoatual from r35_ts_atual_ts_anterior r
-join  d36_tratamento_silvicultural d on(r.r35_cdtratamentoanterior = d.d36_cdtratamento) where d.d36_cdtratamento = 3
+join  d36_tratamento_silvicultural d on(r.r35_cdtratamentoanterior = d.d36_cdtratamento) where r.r35_cdtratamentoanteriorpk = 52
 
 
 
